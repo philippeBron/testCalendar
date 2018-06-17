@@ -7,6 +7,7 @@
     <link rel='stylesheet' href='bootstrap-3.3.7-dist/css/bootstrap-theme.min.css' />
     <link rel='stylesheet' href='bootstrap-3.3.7-dist/css/bootstrap.min.css' />
     <script src='fullcalendar/lib/jquery.min.js'></script>
+    <script src='bootstrap-3.3.7-dist/js/bootstrap.min.js'></script>
     <script src='fullcalendar/lib/moment.min.js'></script>
     <script src='fullcalendar/fullcalendar.js'></script>
     <script src='fullcalendar/locale/fr.js'></script>
@@ -67,12 +68,40 @@
           // TODO: ajouter un formulaire d'enregistrement avec informations du candidat
           // la partie pré-enregistrement peut être évitée en vérifiant les informations saisies lors de la réservation de dates
           console.log('clicked on ' + date.format('DD/MM/YYYY'));
-          alert("Voulez-vous vraiment reserver le "+date.format('DD MMMM YYYY')+" ?");
+          $('#bookForm').modal('show');
+          // alert("Voulez-vous vraiment reserver le "+date.format('DD MMMM YYYY')+" ?");
         });
       });
+
+      function bookExam(){
+        var neph = $('#NEPH').val();
+        $('#bookForm').modal('hide');
+        alert('NEPH: '+neph);
+      };
     </script>
   </head>
   <body>
+    <!-- Modal -->
+    <div class="modal fade" id="bookForm" tabindex="-1" role="dialog" aria-labelledby="bookForm" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="bookFormTitle">Sélection date d'examen</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Fermeture">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            Numéro NEPH : <input id="NEPH" name="NEPH" type="text"></input>
+            <p>Vous êtes sur de votre choix ?</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+            <button type="button" class="btn btn-primary" onclick="bookExam();">Valider</button>
+          </div>
+        </div>
+      </div>
+    </div>
     <div class="container">
       <!-- TODO: afficher le centre sélectionné pour vérification par l'utilisateur  -->
       <h1>Candilib</h1>
