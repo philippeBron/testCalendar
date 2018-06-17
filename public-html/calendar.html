@@ -2,6 +2,7 @@
 <html lang="fr">
   <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel='stylesheet' href='fullcalendar/fullcalendar.css' />
     <link rel='stylesheet' href='bootstrap-3.3.7-dist/css/bootstrap-theme.min.css' />
     <link rel='stylesheet' href='bootstrap-3.3.7-dist/css/bootstrap.min.css' />
@@ -43,7 +44,7 @@
             // right: 'month,agendaWeek,agendaDay'
             right: 'prev,next'
           },
-          weekends: false,
+          weekends: true,
           weekNumbers: false,
           eventLimit: true, // allow "more" link when too many events
           eventSources: [
@@ -52,63 +53,15 @@
               color: 'grey',
               textColor: 'white'
             }
-          ]
+          ],
+          eventClick: function(event, element) {
+            // TODO: mise à jour du nombre de place dans le fichier du centre
+            event.title = "CLICKED!";
+            $('#calendar').fullCalendar('updateEvent', event);
+          }
         });
-          // integration Google
-          // googleCalendarApiKey: 'AIzaSyByBQ3RRr02-5-u65ab48OeBo5bb4g__B4',
-          // events: {
-          //   googleCalendarId: 'philippe.bron@gmail.com'
-          // }
-          // events: [
-          //   {
-          //     "title": "Ecrit francais",
-          //     "start": "2018-06-18"
-          //   },
-          //   {
-          //     "title": "Oral francais",
-          //     "start": "2018-06-28"
-          //   }
-          // ]
-
-          // sources des examens
-          // eventSources: [
-          //   // centre Rosny
-          //   {
-          //     url: '/rosny.php',
-          //     type: 'POST',
-          //     data: {
-          //       custom_param1: 'something',
-          //       custom_param2: 'somethingelse'
-          //     },
-          //     error: function() {
-          //       alert('there was an error while fetching events!');
-          //     },
-          //     color: 'yellow',   // a non-ajax option
-          //     textColor: 'black' // a non-ajax option
-            // },
-            //
-            // // centre Villepinte
-            // {
-            //   url: '/villepinte.php',
-            //   type: 'POST',
-            //   data: {
-            //     custom_param1: 'something',
-            //     custom_param2: 'somethingelse'
-            //   },
-            //   error: function() {
-            //     alert('there was an error while fetching events!');
-            //   },
-            //   color: 'red',   // a non-ajax option
-            //   textColor: 'white' // a non-ajax option
-            // }
-
-            // any other sources...
-          // ]
-
-        // });
 
         var calendar = $('#calendar').fullCalendar('getCalendar');
-
 
         calendar.on('dayClick', function(date, jsEvent, view) {
           console.log('clicked on ' + date.format('DD/MM/YYYY'));
@@ -118,6 +71,9 @@
     </script>
   </head>
   <body>
-    <div id='calendar'></div>
+    <div class="container">
+      <h1>Candilib</h1>
+      <div id='calendar'></div>
+    </div>
   </body>
 </html>
