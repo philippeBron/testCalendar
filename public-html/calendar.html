@@ -64,6 +64,8 @@
         var calendar = $('#calendar').fullCalendar('getCalendar');
 
         calendar.on('dayClick', function(date, jsEvent, view) {
+          // TODO: ajouter un formulaire d'enregistrement avec informations du candidat
+          // la partie pré-enregistrement peut être évitée en vérifiant les informations saisies lors de la réservation de dates
           console.log('clicked on ' + date.format('DD/MM/YYYY'));
           alert("Voulez-vous vraiment reserver le "+date.format('DD MMMM YYYY')+" ?");
         });
